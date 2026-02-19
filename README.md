@@ -96,8 +96,8 @@ Web Dashboard (Real-Time Monitoring)
 
 ## 📁 Project Structure
 
-stroke-ai-system/
-│
+stroke-ai-system
+
 ├── backend/
 ├── dashboard/
 ├── firmware/
