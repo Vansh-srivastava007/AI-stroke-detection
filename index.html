@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Stroke Prediction Dashboard</title>
+    <meta http-equiv="refresh" content="15"> 
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --risk-color: {{ color }}; /* Dynamically set to Red or Green by Flask */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            background-color: var(--primary-dark);
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .vital-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .vital-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-bottom: 4px solid var(--primary-dark);
+        }
+
+        .vital-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+            color: #333;
+        }
+
+        .vital-label {
+            font-size: 0.8em;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .prediction-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            background-color: var(--risk-color);
+            transition: 0.5s;
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .live-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>IoT Health Monitoring System</h1>
+        <p><span class="live-dot"></span> LIVE SENSOR DATA</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>Patient Vitals</h2>
+            <div class="vital-grid">
+                <div class="vital-item">
+                    <span class="vital-value">{{ ecg }}</span>
+                    <span class="vital-label">ECG (Analog)</span>
+                </div>
+                <div class="vital-item">
+                    <span class="vital-value">{{ pulse }}</span>
+                    <span class="vital-label">Pulse (BPM)</span>
+                </div>
+                <div class="vital-item">
+                    <span class="vital-value">{{ temp }}</span>
+                    <span class="vital-label">Temp (°C)</span>
+                </div>
+            </div>
+
+            <div class="prediction-box">
+                AI PREDICTION: {{ status }}
+            </div>
+        </div>
+
+        <div class="footer">
+            Powered by Random Forest Machine Learning | Updated every 15s
+        </div>
+    </div>
+
+</body>
+</html>
